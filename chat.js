@@ -123,15 +123,18 @@ function criarElementoMensagem(mensagem) {
 }
 
 function focarUltimaMensagem() {
-  let tamanho = document.getElementById("conversation").length();
-  if (tamanho != qnt) {
-    const ultima = document.getElementById("conversation").lastElementChild;
+  const conversation = document.getElementById("conversation");
+  const tamanho = conversation.children.length;
+
+  if (tamanho !== qnt) {
+    const ultima = conversation.lastElementChild;
     if (ultima) {
       ultima.scrollIntoView({ behavior: "smooth", block: "end" });
     }
     qnt = tamanho;
   }
 }
+
 
 document.getElementById("enviar").addEventListener("submit", async (event) => {
   event.preventDefault();
