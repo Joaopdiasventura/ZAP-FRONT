@@ -2,6 +2,7 @@ let dadosUsuario;
 let amigo;
 let conversa;
 let adicionar = false;
+let qnt = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const dados = localStorage.getItem("dadosUsuario");
@@ -91,9 +92,9 @@ setInterval(() => {
 
 async function mensagens(conversa) {
   document.getElementById("amigo").innerHTML = amigo.nome;
-  const dados = await fetch(`https://zap-sx1o.onrender.com/mensagens/${conversa}`).then(
-    (response) => response.json()
-  );
+  const dados = await fetch(
+    `https://zap-sx1o.onrender.com/mensagens/${conversa}`
+  ).then((response) => response.json());
   var minhaDiv = document.getElementById("conversation");
   minhaDiv.innerHTML = "";
   console.log(dados);
@@ -122,9 +123,13 @@ function criarElementoMensagem(mensagem) {
 }
 
 function focarUltimaMensagem() {
-  const ultima = document.getElementById("conversation").lastElementChild;
-  if (ultima) {
-    ultima.scrollIntoView({ behavior: "smooth", block: "end" });
+  let tamanho = document.getElementById("conversation").length();
+  if (tamanho != qnt) {
+    const ultima = document.getElementById("conversation").lastElementChild;
+    if (ultima) {
+      ultima.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+    qnt = tamanho;
   }
 }
 
@@ -152,13 +157,16 @@ document
     event.preventDefault();
     const email = document.getElementById("email").value;
 
-    const response = await fetch(`https://zap-sx1o.onrender.com/email/${email}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(),
-    }).then((response) => response.json());
+    const response = await fetch(
+      `https://zap-sx1o.onrender.com/email/${email}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+      }
+    ).then((response) => response.json());
 
     console.log(response);
 
@@ -194,6 +202,6 @@ function mostrar() {
 }
 
 function sair() {
-    localStorage.clear();
-    window.location.href = "./login.html";
+  localStorage.clear();
+  window.location.href = "./login.html";
 }
