@@ -206,3 +206,40 @@ input[type="submit"]{
     scale: 1;
     color: white;
 }
+
+@media only screen and (max-width: 767px) {
+    body {
+        flex-direction: column;
+    }
+
+    #sidebar, #main {
+        width: 100%;
+        margin: 0;
+    }
+
+    #sidebar {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    #main {
+        padding: 10px;
+    }
+
+    #add {
+        width: 80%;
+    }
+
+    input[type="text"], input[type="submit"], #email {
+        width: 100%;
+    }
+
+    .usuario, .amigo {
+        max-width: 100%;
+    }
+
+    #contacts {
+        text-align: center;
+    }
+}
+
