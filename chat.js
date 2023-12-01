@@ -139,6 +139,7 @@ function focarUltimaMensagem() {
 document.getElementById("enviar").addEventListener("submit", async (event) => {
   event.preventDefault();
   const conteudo = document.getElementById("conteudo").value;
+  document.getElementById("conteudo").value = "";
   const response = await fetch(
     `https://zap-sx1o.onrender.com/adicionar/mensagem/${conversa}/${amigo._id}/${dadosUsuario._id}`,
     {
@@ -150,7 +151,6 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
     }
   );
 
-  document.getElementById("conteudo").value = "";
   mensagens(conversa);
 });
 
