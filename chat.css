@@ -229,7 +229,9 @@ input[type="submit"]{
         width: 80%;
     }
 
-    
+    #conversation{
+        height: 300px;
+    }
 
     #contacts {
         text-align: center;
