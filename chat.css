@@ -233,6 +233,10 @@ input[type="submit"]{
         width: 100%;
     }
 
+    .usuario{
+        width: 100%;
+    }
+
     #contacts {
         text-align: center;
     }
