@@ -151,7 +151,7 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
     }
   );
 
-  if (amigo._id === "656a6ced19d3eb7857f35351") {
+  if (amigo._id === "656a78b0e5247833e2eea69a") {
     try {
       const responseChat = await fetch(
         `https://chat-5fbn.onrender.com/mandar/${conteudo}`,
