@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dados = localStorage.getItem("dadosUsuario");
 
   dadosUsuario = JSON.parse(dados);
-  console.log(dadosUsuario);
 
   if (
     dadosUsuario.message != "Essa conta não existe" &&
@@ -41,7 +40,6 @@ async function conversas() {
     }
 
     const dados = await response.json();
-    console.log(dados);
 
     for (let i = 0; i < dados.length; i++) {
       let pessoa1 = await fetch(
@@ -91,13 +89,14 @@ setInterval(() => {
 }, 2000);
 
 async function mensagens(conversa) {
-  document.getElementById("amigo").innerHTML = amigo.nome;
+  if (amigo) {
+    document.getElementById("amigo").innerHTML = amigo.nome;
+  }
   const dados = await fetch(
     `https://zap-sx1o.onrender.com/mensagens/${conversa}`
   ).then((response) => response.json());
   var minhaDiv = document.getElementById("conversation");
   minhaDiv.innerHTML = "";
-  console.log(dados);
 
   for (let i = 0; i < dados.length; i++) {
     criarElementoMensagem(dados[i]);
@@ -140,6 +139,7 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
   event.preventDefault();
   const conteudo = document.getElementById("conteudo").value;
   document.getElementById("conteudo").value = "";
+
   const response = await fetch(
     `https://zap-sx1o.onrender.com/adicionar/mensagem/${conversa}/${amigo._id}/${dadosUsuario._id}`,
     {
@@ -151,8 +151,43 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
     }
   );
 
+  if (amigo._id === "656a6ced19d3eb7857f35351") {
+    try {
+      const responseChat = await fetch(
+        `https://chat-5fbn.onrender.com/mandar/${conteudo}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (responseChat.ok) {
+        const dataChat = await responseChat.text();
+
+        const response2 = await fetch(
+          `https://zap-sx1o.onrender.com/adicionar/mensagem/${conversa}/${dadosUsuario._id}/${amigo._id}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ conteudo: dataChat }), 
+          }
+        );
+
+      } else {
+        console.error("Erro na solicitação ao chat");
+      }
+    } catch (error) {
+      console.error("Erro ao interagir com o chat:", error.message);
+    }
+  }
+
   mensagens(conversa);
 });
+
 
 document
   .getElementById("adicionar")
@@ -171,7 +206,6 @@ document
       }
     ).then((response) => response.json());
 
-    console.log(response);
 
     if (response.message !== "Conta não encontrada") {
       const response2 = await fetch(
@@ -183,7 +217,7 @@ document
           },
           body: JSON.stringify(),
         }
-      ).then((response) => response.json());
+      ).then(response2 => response2.json());
 
       conversas();
     } else {
