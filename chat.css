@@ -137,6 +137,7 @@ input[type="submit"]{
     border: 1px solid red;
     padding: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .contato small{
