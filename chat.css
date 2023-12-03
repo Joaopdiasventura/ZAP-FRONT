@@ -12,6 +12,7 @@ body {
     height: 100vh;
     background-color: black;
     color: white;
+    overflow: hidden;
 }
 
 #sidebar {
@@ -217,7 +218,7 @@ input[type="submit"]{
     }
 
     #sidebar {
-        height: auto;
+        height: 50%;
         overflow-y: auto;
     }
 
