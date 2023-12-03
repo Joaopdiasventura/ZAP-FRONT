@@ -17,7 +17,7 @@ document.getElementById("logar").addEventListener("submit", async (event) => {
     const senha = document.getElementById("senhal").value;
 
     try {
-        const response = await fetch('https://zap-sx1o.onrender.com/login', {
+        const response = await fetch('https://zap-sysa.onrender.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ document.getElementById("registrar").addEventListener("submit", async (event) =>
     const senha2 = document.getElementById("senha2").value;
     if (senha == senha2) {
         try {
-            const response = await fetch(`https://zap-sx1o.onrender.com/enviar/${email}`, {
+            const response = await fetch(`https://zap-sysa.onrender.com/enviar/${email}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ document.getElementById("registrar").addEventListener("submit", async (event) =>
             código = prompt("Digite o código de verificação:");
     
             if (código == responseData.cod) {
-                const response = await fetch('https://zap-sx1o.onrender.com/adicionar/usuario', {
+                const response = await fetch('https://zap-sysa.onrender.com/adicionar/usuario', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

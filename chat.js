@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function conversas() {
   try {
     const response = await fetch(
-      `https://zap-sx1o.onrender.com/conversas/${dadosUsuario._id}`
+      `https://zap-sysa.onrender.com/conversas/${dadosUsuario._id}`
     );
     var minhaDiv = document.getElementById("contacts");
     minhaDiv.innerHTML = "";
@@ -43,10 +43,10 @@ async function conversas() {
 
     for (let i = 0; i < dados.length; i++) {
       let pessoa1 = await fetch(
-        `https://zap-sx1o.onrender.com/pessoa1/${dados[i].pessoa1}`
+        `https://zap-sysa.onrender.com/pessoa1/${dados[i].pessoa1}`
       ).then((response) => response.json());
       let pessoa2 = await fetch(
-        `https://zap-sx1o.onrender.com/pessoa2/${dados[i].pessoa2}`
+        `https://zap-sysa.onrender.com/pessoa2/${dados[i].pessoa2}`
       ).then((response) => response.json());
 
       let pessoas = pessoa1.concat(pessoa2);
@@ -93,7 +93,7 @@ async function mensagens(conversa) {
     document.getElementById("amigo").innerHTML = amigo.nome;
   }
   const dados = await fetch(
-    `https://zap-sx1o.onrender.com/mensagens/${conversa}`
+    `https://zap-sysa.onrender.com/mensagens/${conversa}`
   ).then((response) => response.json());
   var minhaDiv = document.getElementById("conversation");
   minhaDiv.innerHTML = "";
@@ -141,7 +141,7 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
   document.getElementById("conteudo").value = "";
 
   const response = await fetch(
-    `https://zap-sx1o.onrender.com/adicionar/mensagem/${conversa}/${amigo._id}/${dadosUsuario._id}`,
+    `https://zap-sysa.onrender.com/adicionar/mensagem/${conversa}/${amigo._id}/${dadosUsuario._id}`,
     {
       method: "POST",
       headers: {
@@ -167,7 +167,7 @@ document.getElementById("enviar").addEventListener("submit", async (event) => {
         const dataChat = await responseChat.text();
 
         const response2 = await fetch(
-          `https://zap-sx1o.onrender.com/adicionar/mensagem/${conversa}/${dadosUsuario._id}/${amigo._id}`,
+          `https://zap-sysa.onrender.com/adicionar/mensagem/${conversa}/${dadosUsuario._id}/${amigo._id}`,
           {
             method: "POST",
             headers: {
@@ -196,7 +196,7 @@ document
     const email = document.getElementById("email").value;
 
     const response = await fetch(
-      `https://zap-sx1o.onrender.com/email/${email}`,
+      `https://zap-sysa.onrender.com/email/${email}`,
       {
         method: "POST",
         headers: {
@@ -209,7 +209,7 @@ document
 
     if (response.message !== "Conta não encontrada") {
       const response2 = await fetch(
-        `https://zap-sx1o.onrender.com/adicionar/conversa/${dadosUsuario._id}/${response._id}`,
+        `https://zap-sysa.onrender.com/adicionar/conversa/${dadosUsuario._id}/${response._id}`,
         {
           method: "POST",
           headers: {
